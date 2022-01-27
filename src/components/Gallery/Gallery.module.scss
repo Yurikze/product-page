@@ -1,0 +1,36 @@
+.gallery {
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+  &__bigPic {
+    width: 100%;
+    z-index: 1;
+  }
+
+  &__btn {
+    top: 50%;
+    position: absolute;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 2;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_pos_prev {
+      left: 15px;
+    }
+    &_pos_next {
+      right: 15px;
+    }
+  }
+
+  &__btnIcon {
+    width: 10px;
+  }
+}
