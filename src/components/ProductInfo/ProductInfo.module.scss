@@ -1,0 +1,109 @@
+@import '../../utils/variables.scss';
+
+.info {
+  padding: 25px;
+  margin-bottom: 30px;
+  &__company {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: $orange;
+    font-size: 12px;
+    margin: 0 0 20px;
+  }
+  &__title {
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 0 0 25px;
+    color: $varkBlue;
+  }
+  &__desc {
+    color: $darkGrayishBlue;
+    line-height: 1.6;
+    font-size: 16px;
+    margin: 0 0 30px;
+  }
+  &__btns {
+    display: grid;
+  }
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  &__cur {
+    display: flex;
+    align-items: center;
+  }
+  &__val {
+    font-size: 26px;
+    color: $varkBlue;
+    font-weight: bold;
+    margin: 0;
+  }
+  &__discount {
+    color: $orange;
+    background-color: $paleOrange;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0 0 0 15px;
+  }
+  &__old {
+    font-size: 14px;
+    color: $greyishBlue;
+    font-weight: bold;
+    text-decoration: line-through;
+    margin: 0;
+  }
+}
+
+.quantity {
+  display: flex;
+  background-color: $lightBlue;
+  border-radius: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  &__less {
+    padding: 0;
+    width: 12px;
+    height: 12px;
+    border: none;
+    background: url('../../images/icon-minus.svg') no-repeat center;
+    background-color: transparent;
+  }
+
+  &__more {
+    padding: 0;
+    width: 12px;
+    height: 12px;
+    border: none;
+    background: url('../../images/icon-plus.svg') no-repeat center;
+    background-color: transparent;
+  }
+  &__total {
+    margin: 0;
+    font-weight: bold;
+    color: $varkBlue;
+  }
+}
+
+.cartBtn {
+  background-color: $orange;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 40px 40px -10px #ffede0;
+  &__icon {
+    margin-right: 15px;
+  }
+}
