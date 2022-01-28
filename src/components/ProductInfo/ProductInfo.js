@@ -1,14 +1,15 @@
+import React from 'react';
+import { ProductContext } from '../../contexts/ProductContext';
 import classes from './ProductInfo.module.scss';
 
 const ProductInfo = () => {
+  const product = React.useContext(ProductContext);
+
   return (
     <div className={classes.info}>
       <p className={classes.info__company}>Sneaker company</p>
-      <h1 className={classes.info__title}>Fall Limited Edition Sneakers</h1>
-      <p className={classes.info__desc}>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci
-        voluptatum quasi quae qui sint totam, sed eos consequatur nobis quo.
-      </p>
+      <h1 className={classes.info__title}>{product.title}</h1>
+      <p className={classes.info__desc}>{product.description}</p>
       <div className={classes.price}>
         <div className={classes.price__cur}>
           <p className={classes.price__val}>$125.00</p>

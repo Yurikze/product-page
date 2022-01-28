@@ -1,19 +1,39 @@
+import React, { useState } from 'react';
+import { ProductContext } from '../../contexts/ProductContext';
 import classes from './Gallery.module.scss';
-import productImg from '../../images/image-product-1.jpg';
 import prev from '../../images/icon-previous.svg';
 import next from '../../images/icon-next.svg';
 
 const Gallery = () => {
+  const product = React.useContext(ProductContext);
+  const [curImg, setCurImg] = useState(0);
+  const nextClickHandler = (e) => {
+    setCurImg(curImg < product.images.bigPic.length - 1 ? curImg + 1 : 0);
+  };
 
-  
+  const prevClickHandler = () => {
+    setCurImg(curImg > 0 ? curImg - 1 : product.images.bigPic.length - 1);
+  };
+
+  console.log(product.images.bigPic.length);
 
   return (
     <div className={classes.gallery}>
-      <img src={productImg} alt="pic1" className={classes.gallery__bigPic} />
-      <button className={`${classes.gallery__btn} ${classes.gallery__btn_pos_prev}`}>
+      <img
+        src={product.images.bigPic[curImg]}
+        alt="pic1"
+        className={classes.gallery__bigPic}
+      />
+      <button
+        onClick={prevClickHandler}
+        className={`${classes.gallery__btn} ${classes.gallery__btn_pos_prev}`}
+      >
         <img src={prev} alt="previous" className={classes.gallery__btnIcon} />
       </button>
-      <button className={`${classes.gallery__btn} ${classes.gallery__btn_pos_next}`}>
+      <button
+        onClick={nextClickHandler}
+        className={`${classes.gallery__btn} ${classes.gallery__btn_pos_next}`}
+      >
         <img src={next} alt="next" className={classes.gallery__btnIcon} />
       </button>
     </div>
