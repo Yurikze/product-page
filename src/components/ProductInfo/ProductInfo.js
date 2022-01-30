@@ -5,6 +5,16 @@ import classes from './ProductInfo.module.scss';
 const ProductInfo = () => {
   const product = React.useContext(ProductContext);
 
+  const [quantity, setQuantity] = React.useState(0)
+
+  const moreClickHandler = () => {
+    setQuantity(quantity + 1)
+  }
+
+  const lessClickHandler = () => {
+    quantity > 0 && setQuantity(quantity - 1)
+  }
+
   return (
     <div className={classes.info}>
       <p className={classes.info__company}>Sneaker company</p>
@@ -19,9 +29,9 @@ const ProductInfo = () => {
       </div>
       <div className={classes.info__btns}>
         <div className={classes.quantity}>
-          <button className={classes.quantity__less}></button>
-          <p className={classes.quantity__total}>0</p>
-          <button className={classes.quantity__more}></button>
+          <button className={classes.quantity__less} onClick={lessClickHandler}></button>
+          <p className={classes.quantity__total}>{quantity}</p>
+          <button className={classes.quantity__more} onClick={moreClickHandler}></button>
         </div>
         <button className={classes.cartBtn}>
           <span className={classes.cartBtn__icon}>

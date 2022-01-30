@@ -7,15 +7,13 @@ import next from '../../images/icon-next.svg';
 const Gallery = () => {
   const product = React.useContext(ProductContext);
   const [curImg, setCurImg] = useState(0);
-  const nextClickHandler = (e) => {
-    setCurImg(curImg < product.images.bigPic.length - 1 ? curImg + 1 : 0);
+  const nextClickHandler = () => {
+    curImg < product.images.bigPic.length - 1 ? setCurImg(curImg + 1) : setCurImg(0)
   };
 
   const prevClickHandler = () => {
-    setCurImg(curImg > 0 ? curImg - 1 : product.images.bigPic.length - 1);
+    curImg > 0 ? setCurImg(curImg - 1) : setCurImg(product.images.bigPic.length - 1)
   };
-
-  console.log(product.images.bigPic.length);
 
   return (
     <div className={classes.gallery}>

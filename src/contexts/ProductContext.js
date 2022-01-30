@@ -11,6 +11,7 @@ export const product = {
   title: 'Fall Limited Edition Sneakers',
   description:
     'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipiscivoluptatum quasi quae qui sint totam, sed eos consequatur nobis quo.',
+  price: 125,
   images: {
     bigPic: [
       bigPic1,
