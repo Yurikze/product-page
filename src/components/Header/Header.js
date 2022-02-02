@@ -2,18 +2,42 @@ import React from 'react';
 import classes from './Header.module.scss';
 import logo from '../../images/logo.svg';
 import menu from '../../images/icon-menu.svg';
-import ava from '../../images/image-avatar.png'
-import del from '../../images/icon-delete.svg'
-import {ProductContext} from '../../contexts/ProductContext'
+import ava from '../../images/image-avatar.png';
+import del from '../../images/icon-delete.svg';
+import { ProductContext } from '../../contexts/ProductContext';
+import { CartContext } from '../../contexts/CartContext';
 
 const Header = () => {
+  const [cartShow, setCartShow] = React.useState(false);
+  const product = React.useContext(ProductContext);
+  const { cart } = React.useContext(CartContext);
 
-  const [cartShow, setCartShow] = React.useState(false)
-  const product = React.useContext(ProductContext)
+  React.useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
   const cartClickHandler = () => {
-    setCartShow(!cartShow)
-  }
+    setCartShow(!cartShow);
+  };
+
+  let content = !cart.length ? (
+    <p className={classes.cart__empty}>Your cart is empty.</p>
+  ) : (
+    <div className={classes.cart__product}>
+      <img
+        src={product.images.bigPic[0]}
+        alt=""
+        className={classes.cart__productPic}
+      />
+      <div className={classes.cart__prodSummary}>
+        <h3 className={classes.cart__prodTitle}>{product.title}</h3>
+        <p className={classes.cart__prodTotal}>
+          ${product.price}.00 x 3 <span>$375.00</span>
+        </p>
+      </div>
+      <img src={del} alt="" />
+    </div>
+  );
 
   return (
     <header className={classes.header}>
@@ -33,18 +57,14 @@ const Header = () => {
       <div className={classes.header__avaContainer}>
         <img src={ava} alt="avatar" className={classes.header__ava} />
       </div>
-      <div className={classes.cart} style={{display: cartShow ? 'grid' : 'none'}}>
+      <div
+        className={classes.cart}
+        style={{ display: cartShow ? 'grid' : 'none' }}
+      >
         <h3 className={classes.cart__headline}>Cart</h3>
         <div className={classes.cart__content}>
-          {/* <p className={classes.cart__empty}>Your cart is empty.</p> */}
-          <div className={classes.cart__product}>
-            <img src={product.images.bigPic[0]} alt="" className={classes.cart__productPic} />
-            <div className={classes.cart__prodSummary}>
-              <h3 className={classes.cart__prodTitle}>{product.title}</h3>
-              <p className={classes.cart__prodTotal}>${product.price}.00 x 3 <span>$375.00</span></p>
-            </div>
-            <img src={del} alt="" />
-          </div>
+          {content}
+
           <button className={classes.cart__checkout}>Checkout</button>
         </div>
       </div>

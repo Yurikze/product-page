@@ -1,7 +1,12 @@
 .gallery {
   position: relative;
   max-height: 300px;
+  max-width: 450px;
   overflow: hidden;
+  margin: 0 auto;
+  @media (min-width: 450px) {
+    max-height: none;
+  }
   &__bigPic {
     width: 100%;
     z-index: 1;

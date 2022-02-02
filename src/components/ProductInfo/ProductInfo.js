@@ -1,9 +1,11 @@
 import React from 'react';
 import { ProductContext } from '../../contexts/ProductContext';
+import { CartContext } from '../../contexts/CartContext';
 import classes from './ProductInfo.module.scss';
 
 const ProductInfo = () => {
   const product = React.useContext(ProductContext);
+  const {handleAddToCart} = React.useContext(CartContext)
 
   const [quantity, setQuantity] = React.useState(0)
 
@@ -13,6 +15,13 @@ const ProductInfo = () => {
 
   const lessClickHandler = () => {
     quantity > 0 && setQuantity(quantity - 1)
+  }
+
+  const onAddToCart = () => {
+    handleAddToCart({
+      product,
+      quantity
+    })
   }
 
   return (
@@ -33,7 +42,7 @@ const ProductInfo = () => {
           <p className={classes.quantity__total}>{quantity}</p>
           <button className={classes.quantity__more} onClick={moreClickHandler}></button>
         </div>
-        <button className={classes.cartBtn}>
+        <button className={classes.cartBtn} onClick={onAddToCart}>
           <span className={classes.cartBtn__icon}>
             <svg width="22" height="20" xmlns="http://www.w3.org/2000/svg">
               <path
