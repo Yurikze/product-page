@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import classes from './Header.module.scss';
 import logo from '../../images/logo.svg';
 import menu from '../../images/icon-menu.svg';
@@ -6,9 +7,11 @@ import ava from '../../images/image-avatar.png';
 import del from '../../images/icon-delete.svg';
 import { ProductContext } from '../../contexts/ProductContext';
 import { CartContext } from '../../contexts/CartContext';
+import { cartActions} from '../../store/cartSlice'
 
 const Header = () => {
-  const [cartShow, setCartShow] = React.useState(false);
+  const showCart = useSelector(state => state.cart.showCart)
+  const dispatch = useDispatch()
   const product = React.useContext(ProductContext);
   const { cart } = React.useContext(CartContext);
 
@@ -17,7 +20,7 @@ const Header = () => {
   }, [cart]);
 
   const cartClickHandler = () => {
-    setCartShow(!cartShow);
+    dispatch(cartActions.toggleIsLoggedin())
   };
 
   let content = !cart.length ? (
@@ -59,7 +62,7 @@ const Header = () => {
       </div>
       <div
         className={classes.cart}
-        style={{ display: cartShow ? 'grid' : 'none' }}
+        style={{ display: showCart ? 'grid' : 'none' }}
       >
         <h3 className={classes.cart__headline}>Cart</h3>
         <div className={classes.cart__content}>
