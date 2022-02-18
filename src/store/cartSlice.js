@@ -1,15 +1,16 @@
-import {createSlice} from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
+
 
 const initialState = {
-  showCart: false
+  total: 0
 }
 
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    toggleIsLoggedin: state => {
-      state.showCart = !state.showCart
+    addToCart: (state, action) => {
+      state.total += action.payload
     }
   }
 })

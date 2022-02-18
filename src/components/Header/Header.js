@@ -7,20 +7,23 @@ import ava from '../../images/image-avatar.png';
 import del from '../../images/icon-delete.svg';
 import { ProductContext } from '../../contexts/ProductContext';
 import { CartContext } from '../../contexts/CartContext';
-import { cartActions} from '../../store/cartSlice'
+import { uiActions} from '../../store/uiSlice'
 
 const Header = () => {
-  const showCart = useSelector(state => state.cart.showCart)
+  const showCart = useSelector(state => state.ui.showCart)
+  const {total} = useSelector(state => state.cart)
   const dispatch = useDispatch()
   const product = React.useContext(ProductContext);
   const { cart } = React.useContext(CartContext);
 
+
+
   React.useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+    console.log(total);
+  }, [total]);
 
   const cartClickHandler = () => {
-    dispatch(cartActions.toggleIsLoggedin())
+    dispatch(uiActions.toggleIsLoggedin())
   };
 
   let content = !cart.length ? (
@@ -56,6 +59,7 @@ const Header = () => {
             fillRule="nonzero"
           />
         </svg>
+        <div className={classes.header__cartBadge} style={{'display': total ? 'block' : 'none'}}>{total}</div>
       </div>
       <div className={classes.header__avaContainer}>
         <img src={ava} alt="avatar" className={classes.header__ava} />

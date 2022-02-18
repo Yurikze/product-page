@@ -1,9 +1,12 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { ProductContext } from '../../contexts/ProductContext';
 import { CartContext } from '../../contexts/CartContext';
 import classes from './ProductInfo.module.scss';
+import { cartActions } from '../../store/cartSlice';
 
 const ProductInfo = () => {
+  const dispatch = useDispatch()
   const product = React.useContext(ProductContext);
   const {handleAddToCart} = React.useContext(CartContext)
 
@@ -18,10 +21,11 @@ const ProductInfo = () => {
   }
 
   const onAddToCart = () => {
-    handleAddToCart({
-      product,
-      quantity
-    })
+    dispatch(cartActions.addToCart(quantity))
+    // handleAddToCart({
+    //   product,
+    //   quantity
+    // })
   }
 
   return (
